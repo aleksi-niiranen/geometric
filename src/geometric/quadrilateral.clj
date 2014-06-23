@@ -1,5 +1,6 @@
 (ns geometric.quadrilateral
-  (:require [geometric.core :refer :all]))
+  (:require [geometric.core :refer :all]
+            [geometric.datatypes :refer :all]))
 
 (defmulti diagonal-p shape-meta)
 

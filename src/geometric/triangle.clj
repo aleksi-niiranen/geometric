@@ -1,10 +1,31 @@
 (ns geometric.triangle
-  (:require [geometric.core :refer :all
-             geometric.utils :refer :all]))
+  (:require [geometric.core :refer :all]
+            [geometric.datatypes :refer :all]
+            [geometric.utils :refer :all]))
 
 (defmethod perimeter geometric.datatypes.Triangle
   [t]
   (reduce + (take 3 (vals t))))
+
+(defn- legs
+  "Returns the legs of a triangle."
+  [t]
+  (take 3 (vals t)))
+
+(defn- angles
+  "Returns the angles of a triangle."
+  [t]
+  (nthnext (vals t) 3))
+
+(defn- pairs-from-set-of-3
+  "Returns value pairs from a set of 3."
+  [coll]
+  (conj (map vector coll (rest coll)) (vector (first coll) (last coll))))
+
+(defn- equal-pairs?
+  "Tests if values in pairs are equal and returns a collection of boolean values."
+  [coll]
+  (map (fn [x] (apply = x)) coll))
 
 (defn equilateral?
   "Test if a triangle is equilateral."
@@ -15,16 +36,15 @@
 (defn isosceles?
   "Test if a triangle is isosceles."
   [t]
-  )
+  (true?
+    (and
+      (some true? (equal-pairs? (pairs-from-set-of-3 (legs t))))
+      (some true? (equal-pairs? (pairs-from-set-of-3 (angles t)))))))
 
 (defn scalene?
   "Test if a triangle is scalene."
   [t]
-  (let [legs (take 3 (vals t))
-        angles (nthnext (vals t) 3)
-        leg-pairs (conj (map vector legs (rest legs)) (vector (first legs) (last legs)))
-        angle-pairs (conj (map vector angles (rest angles)) (vector (first angles) (last angles)))]
-    (and
-      (apply = (map (fn [x] (apply = x)) leg-pairs))
-      (apply = (map (fn [x] (apply = x)) angle-pairs)))))
+  (and
+    (apply = (equal-pairs? (pairs-from-set-of-3 (legs t))))
+    (apply = (equal-pairs? (pairs-from-set-of-3 (angles t))))))
 

@@ -1,7 +1,8 @@
 (ns geometric.rectangle
-  (:require [geometric.core :refer :all
-             geometric.quadrilateral :refer :all
-             geometric.utils :refer :all]))
+  (:require [geometric.core :refer :all]
+            [geometric.datatypes :refer :all]
+            [geometric.quadrilateral :refer :all]
+            [geometric.utils :refer :all]))
 
 (defn rectangle
   "Returns a new rectangle."
