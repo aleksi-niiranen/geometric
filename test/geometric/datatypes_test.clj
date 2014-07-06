@@ -23,3 +23,17 @@
     (let [c (->Circle 5)]
       (is (= 5 (:r c)))
       (is (= geometric.datatypes.Circle (class c))))))
+
+(deftest triangle-record
+  (testing "Triangle record"
+    (let [t (->Triangle 2 3 4 45 55 80)]
+      (testing "sides"
+        (is (= 2 (:a t)))
+        (is (= 3 (:b t)))
+        (is (= 4 (:c t))))
+      (testing "angles"
+        (is (= 45 (:A t)))
+        (is (= 55 (:B t)))
+        (is (= 80 (:C t))))
+      (testing "type"
+        (is (= geometric.datatypes.Triangle (class t)))))))

@@ -1,6 +1,7 @@
 (ns geometric.quadrilateral-test
   (:require [clojure.test :refer :all]
             [geometric.datatypes :refer :all]
+            [geometric.core :refer :all]
             [geometric.quadrilateral :refer :all]))
 
 (def legal-q (->Quadrilateral 3 5 3 5 90 90 90 90))
@@ -20,3 +21,17 @@
     (is (supplementary? legal-q))
     (is (false? (supplementary? lt-360-q)))
     (is (false? (supplementary? gt-360-q)))))
+
+(deftest perimeter-fn
+  (testing "perimeter function"
+    (is (= 16 (perimeter legal-q)))))
+
+(deftest equal-sides?-fn
+  (testing "equal-sides? function"
+    (is (false? (equal-sides? legal-q)))
+    (is (true? (equal-sides? (->Quadrilateral 4 4 4 4 90 90 90 90))))))
+
+(deftest four-rightangles?-fn
+  (testing "four-rightangles? function"
+    (is (true? (four-rightangles? legal-q)))
+    (is (false? (four-rightangles? (->Quadrilateral 6 10 6 10 100 80 100 80))))))
