@@ -1,7 +1,8 @@
 (ns geometric.rhombus
-  (:require [geometric.core :refer :all
-             geometric.quadrilateral :refer :all
-             geometric.utils :refer :all]))
+  (:require [geometric.core :refer :all]
+            [geometric.datatypes :refer :all]
+            [geometric.quadrilateral :refer :all]
+            [geometric.utils :refer :all]))
 
 (defn rhombus
   "Returns a new rhombus."
@@ -11,13 +12,13 @@
 
 (defmethod diagonal-p :rhombus
   [q]
-  (let [a (radians (.A q))]
-    (* 2 (.a q) (cos a))))
+  (let [a (radians (:A q))]
+    (* 2 (:a q) (cos (/ a 2)))))
 
 (defmethod diagonal-q :rhombus
   [q]
-  (let [a (radians (.A q))]
-    (* 2 (.a q) (sin a))))
+  (let [a (radians (:A q))]
+    (* 2 (:a q) (sin (/ a 2)))))
 
 (defmethod area :rhombus
   [q]

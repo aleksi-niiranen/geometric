@@ -3,7 +3,6 @@
             [geometric.utils :refer :all]
             [geometric.datatypes :refer :all]
             [geometric.core :refer :all]
-            [geometric.quadrilateral :refer :all]
             [geometric.parallelogram :refer :all]))
 
 (def p (with-meta (->Quadrilateral 3 6 3 6 70 110 70 110) {:shape :parallelogram}))

@@ -1,8 +1,8 @@
 (ns geometric.square
-  (:require [geometric.datatypes :refer :all
-             geometric.core :refer :all
-             geometric.quadrilateral :refer :all
-             geometric.utils :refer :all]))
+  (:require [geometric.datatypes :refer :all]
+            [geometric.core :refer :all]
+            [geometric.quadrilateral :refer :all]
+            [geometric.utils :refer :all]))
 
 (defn square
   "Returns a new square."
