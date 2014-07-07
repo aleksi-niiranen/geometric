@@ -7,6 +7,10 @@
   [t]
   (reduce + (take 3 (vals t))))
 
+(defn triangle
+  [a b c A B C]
+  (with-meta (->Triangle a b c A B C) {:shape :triangle}))
+
 (defn- legs
   "Returns the legs of a triangle."
   [t]
@@ -48,3 +52,12 @@
     (apply = (equal-pairs? (pairs-from-set-of-3 (legs t))))
     (apply = (equal-pairs? (pairs-from-set-of-3 (angles t))))))
 
+(defn acute?
+  "Test if a triangle is acute."
+  [t]
+  (apply = (map (fn [x] (< x 90)) (angles t))))
+
+(defn right?
+  "Test if a triangle is right i.e. has a 90 degree angle."
+  [t]
+  (if (nil? (some #{90} (angles t))) false true))

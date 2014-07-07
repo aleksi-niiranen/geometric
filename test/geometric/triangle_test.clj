@@ -21,3 +21,19 @@
   (testing "scalene? function"
     (is (false? (scalene? (->Triangle 9 9 6 50 50 80))))
     (is (scalene? t))))
+
+(deftest triangle-fn
+  (testing "triangle function"
+    (let [tfn (triangle 5 6 7 35 55 90)]
+      (is (= t tfn))
+      (is (= :triangle (shape-meta tfn))))))
+
+(deftest acute?-fn
+  (testing "acute? function"
+    (is (false? (acute? t)))
+    (is (acute? (->Triangle 7 13 9 33 67 80)))))
+
+(deftest right?-fn
+  (testing "right? function"
+    (is (false? (right? (->Triangle 7 13 9 33 67 80))))
+    (is (right? t))))
